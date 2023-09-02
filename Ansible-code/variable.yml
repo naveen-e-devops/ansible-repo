@@ -31,3 +31,8 @@
       copy:
        src: /home/ansadm/java
        dest: /home/ansadm
+
+    - name: copy a test file
+      copy:
+       src: /home/ansadm/java1
+       dest: /home/ansadm1
