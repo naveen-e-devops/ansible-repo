@@ -1,0 +1,16 @@
+---
+- hosts: ubuntu
+  become: yes
+  tasks:
+    - name:  install webserver 
+      apt:
+        name: apache2
+        state: present
+    - name: start webserver service
+      service:
+       name: apache2
+       state: stopped
+    - name: copy a file
+      copy:
+       src: /home/ansadm/java
+       dest: /home/ansadm

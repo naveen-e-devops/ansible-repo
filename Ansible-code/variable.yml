@@ -1,0 +1,33 @@
+---
+- hosts: ubuntu
+  become: yes
+  vars:
+    webserver: nginx
+    web: apache2
+  vars_files:
+    - user-creds    
+  tasks:
+    - name:  install webserver 
+      apt:
+        name: "{{webserver}}"
+        state: present
+  
+    - name: stop apache2 service
+      service:
+        name: "{{web}}"
+        state: stopped
+
+    - name: start webserver service
+      service:
+       name: "{{webserver}}"
+       state: started
+
+    - name: create a user
+      user:
+        name: "{{username}}"
+        state: present
+
+    - name: copy a file
+      copy:
+       src: /home/ansadm/java
+       dest: /home/ansadm
